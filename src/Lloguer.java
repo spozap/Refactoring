@@ -6,12 +6,13 @@ public class Lloguer {
 	private int dies;
 	private Date data;
 	private Vehicle vehicle;
-	
 	Lloguer(int dies, Date data){
 		this.setData(data);
 		this.setDies(dies);
 	}
+	
 
+	
 	public int getDies() {
 		return dies;
 	}
@@ -39,6 +40,8 @@ public class Lloguer {
 	public void llogaCotxe(Vehicle v) {
 		this.vehicle = v;
 	}
+	
+	
 	
 	public void treuLloguer() {
 		setVehicle(null);

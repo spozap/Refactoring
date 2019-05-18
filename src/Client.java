@@ -36,8 +36,18 @@ public class Client {
         return lloguers.contains(lloguer);
     }
 
+	public Vector<Lloguer> getLloguers (){
+		return lloguers;
+	}
+    
+	public int totalLloguers(Client c) {
+		int num = c.getLloguers().size();
+		return num;
+	}
+	
     public String informe() {
         // XXX: de moment buit
         return null;
     }
-}
+
+	}

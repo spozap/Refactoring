@@ -2,12 +2,19 @@ public class Vehicle {
 
 	private String model;
 	private String marca;
-	private String categoria;
+	private tipusVehicle categoria;
+	public static  tipusVehicle basic = tipusVehicle.BASIC; // Declarem el cotxe de tipus bàsic
+	public static tipusVehicle general = tipusVehicle.GENERAL; // Declarem el cotxe de tipus general
+	public static tipusVehicle luxe = tipusVehicle.LUXE; // Declarem el cotxe de luxe
 	
-	Vehicle(String model,String marca,String categoria){
+	enum tipusVehicle { // Definim que el tipus de vehicle sigui algun dels especificats
+		BASIC , GENERAL , LUXE;
+	}
+	
+	Vehicle(String model,String marca,tipusVehicle t){
 		this.model = model;
 		this.marca = marca;
-		this.categoria = categoria;
+		this.categoria = t;
 	}
 
 	public String getModel() {
@@ -26,14 +33,14 @@ public class Vehicle {
 		this.marca = marca;
 	}
 
-	public String getCategoria() {
+	public tipusVehicle getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(String categoria) {
+	public void setCategoria(tipusVehicle categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	
 	
 }
