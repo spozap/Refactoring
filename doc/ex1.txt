@@ -1,0 +1,151 @@
+Exemple de refactoring: 
+
+Procedència: M3 UF4 Exercici1
+
+Crec que aquest és un exemple de refactoring , en la meva opinió és fàcil d’entendre , al estar comentat també és més fàcil d’entendre. Ademés gràcies a la implementació dels mètodes i de diferents classes facilita molt la reutilització del codi i la modificació del mateix.
+
+	public class GatPersa {
+    	private int vides = 7;   // vides disponibles del gat Persa
+    	private String estat = "estirat";
+    	public int getVides() {  // mètode que retorna el nombre de vides
+        	return vides;
+    	}
+    	public String getEstat() {
+   		 return estat;
+   	 }
+   	 
+    	public boolean EstaViu() {
+   		 return this.vides>0;
+   	 }
+   	 
+   	 public boolean estaDret() {
+   		 return this.estat.equals("dret");
+   	 }
+   	 
+   	 public boolean estaAssegut() {
+   		 return this.estat.equals("assegut");
+   	 }
+   	 
+   	 public boolean estaEstirat() {
+   		 return this.estat.equals("estirat");
+   	 }
+   	 
+   	 public void aixecat() { // Metodo para levantar al gato
+   		 
+   		 if (this.estat.equals("aixecat")){ // Si el estado actual del gato es aixecat no imprime nada
+   			 System.out.print("");
+   		 } else { // Sino cambia el esta y imprime el siguiente mensaje
+   			 this.estat = "aixecat";
+   			 System.out.println("M'aixeco");
+   	 }
+   	 }
+   	 
+   	 public void seu() { // Metodo para sentar
+   		 
+   		 if (this.estat.equals("assegut")){ //Si el estado actual del gato es aixecat no imprime nada
+   			 System.out.print("");
+   		 } else { //  Sino cambia el esta y imprime el siguiente mensaje
+   			 this.estat = "assegut";
+   			 System.out.println("M'assento");   		 
+   		 }
+   	 }
+   	 
+   	 public void estirat() { //Si el estado actual del gato es aixecat no imprime nada
+   		 
+   		 if (this.estat.equals("estirat")){ //Sino cambia el estado y imprime el siguiente mensaje
+   				 System.out.print("");
+   			 } else {
+   				 this.estat = "estirat";
+   				 System.out.println("M'estiro");   				 
+   			 }
+   	 }    
+   	 
+
+	public static void main(String[] args) {
+    	GatPersa renat = new GatPersa();
+    	System.out.println("Al gat Renat li queden " + renat.getVides() + " vides");
+    	renat.setVides(-12);
+    	System.out.println("Al gat Renat li queden " + renat.getVides() + " vides");
+    	renat.setVides(12);
+    	System.out.println("Al gat Renat li queden " + renat.getVides() + " vides");
+    	renat.setEstat("as");
+    	System.out.println("El estado actual de Renat es " + renat.getEstat());
+       	}   	 
+   	 
+    	public void setVides(int vides) {
+        	// modifica el nombre de vides del gat si el paràmetre vides conté un valor vàlid
+        	if (vides >= 0) {
+            	this.vides = vides;   // de moment passem per alt aquest "this"
+        	}
+    	}
+   	 
+    	public void setEstat(String estat) {
+   		 if (estat.equals("estirat") || estat.equals("assegut") || estat.equals("dret")){ // Si el estado no es como los del if , asignará el que viene asignado por defecto
+   			 this.estat = estat;
+   		 }
+   	 }
+   	 
+	}
+
+
+
+
+
+//////////////////////////////////////////////
+
+Exemple de codi no refactoritzat:
+
+Procedència: Projecte num 2 UF3 M3
+
+Crec que aquest és un exemple de codi no refactoritzat , encara que en la meva opinió ho veig bastant clar que és lo que es pretén fer amb cada línia de codi. Crec que és bastant fàcil d’entendre , encara  que més difícil de modificar i reutilitzar.
+
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+import datetime
+import csv
+
+
+try:
+	valor = True
+	while valor==True:
+		try:
+			x = raw_input("Introduce el nombre del fichero CSV: ")
+			csv = x+".csv"
+
+			abrir_csv = open(csv,'r')
+			y = raw_input("Introduce el nombre del fichero HTML: ")
+			html = y+".html"
+			abrir_html = open(html,'w+')
+			valor=False
+		except:
+			print "Error con el nombre del archivo"
+	lineas = abrir_csv.read().splitlines() # Lee todo el archivo csv , y separa cada linea
+	lineas.pop(0)
+	abrir_html.write("<!DOCTYPE html>")
+	abrir_html.write("<html>")
+	abrir_html.write("	<head>")
+	abrir_html.write("		<title>M3_SergiPoza</title>")
+	abrir_html.write("<link rel=""stylesheet"" href=""style.css"">")
+	abrir_html.write("	</head>")
+	abrir_html.write("	<body>")
+	abrir_html.write("		<h1>Resultat: </h1>")
+	abrir_html.write("		<table border=1>")
+	abrir_html.write("<tr><td>Barrier</td><td>Geo</td><td>Time</td><td>Sizeclas</td><td>Unit</td><td>Value</td><td>Flag and Footnotes</td></tr>")
+	for i in lineas: # Recorre todas las lineas
+		linea = i.split(',') # Separa el valor de cada linea con una coma
+		abrir_html.write("<tr>")
+		for l in linea: # Recorre todas los valores de todas las lineas
+			abrir_html.write("<td>")
+			abrir_html.write(l)
+			abrir_html.write("</td>")
+		abrir_html.write("</tr>")
+	abrir_html.write("		</table>")
+	abrir_html.write("	</body>")
+	abrir_html.write("</html>")
+except:
+	print "Error!"
+finally:
+	abrir_html.close()
+	abrir_csv.close()
