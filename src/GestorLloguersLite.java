@@ -27,11 +27,10 @@ public class GestorLloguersLite  {
 		c1.afegeix(lloguer2);
 		c1.afegeix(lloguer3);
 		
-		informeClient(c1);
-
+		System.out.println(c1.informe());
 	}
 	
-	public static void informeClient(Client c) {
+	public static void informeLloguers(Client c) {
 		
 		System.out.println("Client:\t"+c.getNom());
 		System.out.println("	"+c.getNif());
@@ -44,6 +43,7 @@ public class GestorLloguersLite  {
 			System.out.println("Model: "+c.getLloguers().get(i).getVehicle().getModel());
 		}
 	}
+	
 	
 	
 }

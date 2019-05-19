@@ -46,6 +46,37 @@ public class Lloguer {
 	public void treuLloguer() {
 		setVehicle(null);
 	}
+	
+	
+	public int bonificacions() {
+		// Bonificacions per als vehicles de luxe
+		int bonificacions = 0;
+		if (vehicle.getCategoria() == vehicle.luxe && getDies()>1 ) {
+			bonificacions++;
+		}
+		return bonificacions;
+	}
+	
+	public double calculaQuantitat() {
+		
+		double quantitat = 0;
+		
+		if (vehicle.getCategoria()==vehicle.basic) {
+            quantitat += 3;
+            if (getDies() > 3) {
+                quantitat += (getDies() - 3) * 1.5;   
+            }
+            } else if (vehicle.getCategoria()==vehicle.general) {
+            	quantitat += 4;
+            	if (getDies() > 2) {
+            		quantitat += (getDies() - 2) * 2.5;
+            	}
+            } else if (vehicle.getCategoria()==vehicle.luxe) {
+            	quantitat += getDies() * 6;
+            } 
+		return quantitat;
+		
+	}
 
 	
 }

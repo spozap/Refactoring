@@ -45,9 +45,40 @@ public class Client {
 		return num;
 	}
 	
-    public String informe() {
-        // XXX: de moment buit
-        return null;
-    }
-
+	// Del mètode informe en general podem aprofitar tot el codi , encara que falta modificar algunes coses
+	// per a reaprofitar-ho al usar-ho en mètodes.
+	
+	public String informe() {
+	    int bonificacions = 0;
+	    String resultat = "Informe de lloguers del client " +
+	        getNom() +
+	        " (" + getNif() + ")\n";
+	    
+	    for (Lloguer lloguer:lloguers) {
+	    	double quantitat = 0;
+	    	bonificacions += lloguer.bonificacions();
+	        resultat += "\t" +
+	                lloguer.getVehicle().getMarca() +
+	                " " +
+	                lloguer.getVehicle().getModel() + ": " +
+	                (lloguer.calculaQuantitat() * 30) + "€" + "\n";
+	    }
+	    
+	    // afegeix informació final
+	    resultat += "Import a pagar: " + preuTotal() + "€\n" +
+	        "Punts guanyats: " + bonificacions + "\n";
+	    return resultat;
 	}
+	
+	//Preu de tots els lloguers d'un client
+	public double preuTotal() {
+		double total = 0;
+		for (Lloguer lloguer:lloguers) { //Calcula el total de cada cotxe i suma al total
+			double preu = lloguer.calculaQuantitat();
+			total += preu * 30;
+		}
+		return total;
+	}
+	
+	
+}
