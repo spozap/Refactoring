@@ -33,25 +33,21 @@ public class TestLloguers {
 		c1.afegeix(lloguer2);
 		c1.afegeix(lloguer3);
 		String a = "Informe de lloguers del client Sergi (43583822H)\n" + 
-				"\tVerlingo Citroen: 1080.0€\n" + 
-				"\tDokker Dacia: 2220.0€\n" + 
-				"\tModel Y Tesla: 3240.0€\n" + 
-				"Import a pagar: 6540.0€\nPunts guanyats: 1\n";
+				"\tVerlingo Citroen: 1080.0ï¿½\n" + 
+				"\tDokker Dacia: 2220.0ï¿½\n" + 
+				"\tModel Y Tesla: 3240.0ï¿½\n" + 
+				"Import a pagar: 6540.0ï¿½\nPunts guanyats: 1\n";
 		String test = c1.informe();
 		assertEquals(a,test);
-		System.out.println(c1.informe());
-
 	}
 	
 	@Test
 	public void testClientSenseLloguer() {
-		Client c1 = new Client("4564545H","Borja","789456123");
-		System.out.println(c1.informe());
-		
+		Client c1 = new Client("4564545H","Borja","789456123");		
 		String as = c1.informe();
 		
 		String resultat = "Informe de lloguers del client Borja (4564545H)\n";
-		resultat+="Import a pagar: 0.0€\n"; 
+		resultat+="Import a pagar: 0.0ï¿½\n"; 
 		resultat +="Punts guanyats: 0\n";
 		assertEquals(as,resultat);
 		
@@ -74,16 +70,105 @@ public class TestLloguers {
 		String informe = c1.informe();
 		
 		String output="Informe de lloguers del client Sergi (43583822H)\n"+
-		"\tVerlingo Citroen: 630.0€\n"+
-		"Import a pagar: 630.0€\n"+
+		"\tVerlingo Citroen: 630.0ï¿½\n"+
+		"Import a pagar: 630.0ï¿½\n"+
 		"Punts guanyats: 0\n";
 		assertEquals(output,informe);
 		
 	}
 	
-	/*public static void main(String[] args) throws ParseException {
-
-	}*/
+	@Test
+	public void testClientambVariosLloguers() throws ParseException {
+		
+		Client c1 = new Client("43583822H","Sergi","789456231");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+		Date data1 = dateFormat.parse("2/11/1999");
+		Date data2 = dateFormat.parse("3/6/2019");
+		
+		Lloguer lloguer1 = new Lloguer(30,data1);
+		Lloguer lloguer2 = new Lloguer(23,data2);
+		
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.basic);
+		Vehicle vehicle2 = new Vehicle("Seat","Ibiza",Vehicle.general);
+		
+		lloguer1.llogaCotxe(vehicle1);
+		lloguer2.llogaCotxe(vehicle2);
+		c1.afegeix(lloguer1);
+		c1.afegeix(lloguer2);
+		
+		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
+				"\tVerlingo Citroen: 1305.0ï¿½\n"+
+				"\tIbiza Seat: 1695.0ï¿½\n"+
+			"Import a pagar: 3000.0ï¿½\n"+
+			"Punts guanyats: 0\n";
+		String funcio = c1.informe();
+		assertEquals(output,funcio);
+	}
+	
+	@Test
+	public void testLloguerVehicleLuxeAmbUnDia() throws ParseException {
+		Client c1 = new Client("43583822H","Sergi","789456231");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+		Date data1 = dateFormat.parse("2/11/1999");
+		
+		Lloguer lloguer1 = new Lloguer(1,data1);
+		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		lloguer1.llogaCotxe(vehicle1);
+		c1.afegeix(lloguer1);
+		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
+				"\tModel Y Tesla: 360.0ï¿½"+
+				"Import a pagar: 360.0ï¿½\n"+
+				"Punts guanyats: 0\n";
+	}
+	
+	@Test
+	public void testLloguerVehicleLuxeAmbDosDies() throws ParseException {
+		Client c1 = new Client("43583822H","Sergi","789456231");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+		Date data1 = dateFormat.parse("2/11/1999");
+		
+		Lloguer lloguer1 = new Lloguer(1,data1);
+		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		lloguer1.llogaCotxe(vehicle1);
+		c1.afegeix(lloguer1);
+		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
+				"\tModel Y Tesla: 360.0ï¿½"+
+				"Import a pagar: 360.0ï¿½\n"+
+				"Punts guanyats: 1\n";
+	}
+	
+	@Test
+	public void testLloguerVehicleGeneralAmbUnDia() throws ParseException {
+		Client c1 = new Client("43583822H","Sergi","789456231");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+		Date data1 = dateFormat.parse("2/11/1999");
+		
+		Lloguer lloguer1 = new Lloguer(1,data1);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.general);
+		lloguer1.llogaCotxe(vehicle1);
+		c1.afegeix(lloguer1);
+		
+		String funcio = c1.informe();
+		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
+				"\tVerlingo Citroen: 120.0ï¿½\n"+
+				"Import a pagar: 120.0ï¿½\n"+
+				"Punts guanyats: 0\n";
+		assertEquals(output,funcio);
+	}
+	
+	
+	public static void main(String[] args) throws ParseException {
+		Client c1 = new Client("43583822H","Sergi","789456231");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
+		Date data1 = dateFormat.parse("2/11/1999");
+		
+		Lloguer lloguer1 = new Lloguer(1,data1);
+		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		lloguer1.llogaCotxe(vehicle1);
+		c1.afegeix(lloguer1);
+		
+		System.out.println(c1.informe());
+	}
 	
 	
 	

@@ -66,14 +66,14 @@ public class Lloguer {
             if (getDies() > 3) {
                 quantitat += (getDies() - 3) * 1.5;   
             }
-            } else if (vehicle.getCategoria()==vehicle.general) {
+    	} else if (vehicle.getCategoria()==vehicle.general) {
             	quantitat += 4;
             	if (getDies() > 2) {
             		quantitat += (getDies() - 2) * 2.5;
-            	}
-            } else if (vehicle.getCategoria()==vehicle.luxe) {
+    	}
+        } else if (vehicle.getCategoria()==vehicle.luxe) {
             	quantitat += getDies() * 6;
-            } 
+        } 
 		return quantitat;
 		
 	}
