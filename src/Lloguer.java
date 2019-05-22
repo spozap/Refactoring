@@ -11,8 +11,6 @@ public class Lloguer {
 		this.setDies(dies);
 	}
 	
-
-	
 	public int getDies() {
 		return dies;
 	}
@@ -42,7 +40,6 @@ public class Lloguer {
 	}
 	
 	
-	
 	public void treuLloguer() {
 		setVehicle(null);
 	}
@@ -57,21 +54,25 @@ public class Lloguer {
 		return bonificacions;
 	}
 	
-	public double calculaQuantitat() {
+	public double quantitat() { // Ja no cal rebre el paràmetre de lloguer perquè ja el sap
 		double quantitat = 0;		
-		if (vehicle.getCategoria()==Vehicle.BASIC) {
+		switch (getVehicle().getCategoria()) {
+		case Vehicle.BASIC:
             quantitat += 3;
             if (getDies() > 3) {
-                quantitat += (getDies() - 3) * 1.5;   
+                quantitat += (getDies() - 3) * 1.5;
             }
-    	} else if (vehicle.getCategoria()==Vehicle.GENERAL) {
-            	quantitat += 4;
-            	if (getDies() > 2) {
-            		quantitat += (getDies() - 2) * 2.5;
-    	}
-        } else if (vehicle.getCategoria()==Vehicle.LUXE) {
-            	quantitat += getDies() * 6;
-        } 
+            break;
+		case Vehicle.GENERAL:
+            quantitat += 4;
+            if (getDies() > 2) {
+                quantitat += (getDies() - 2) * 2.5;
+            }
+            break;
+		case Vehicle.LUXE:
+            quantitat += getDies() * 6;
+            break;
+		}
 		return quantitat;
 		
 	}

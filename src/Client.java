@@ -22,7 +22,7 @@ public class Client {
     public void setTelefon(String telefon) {
         this.telefon = telefon;
     }
-    public void afegeix(Lloguer lloguer) {
+	    public void afegeix(Lloguer lloguer) {
         if (! lloguers.contains(lloguer) ) {
             lloguers.add(lloguer);
         }
@@ -61,35 +61,13 @@ public class Client {
 	                lloguer.getVehicle().getMarca() +
 	                " " +
 	                lloguer.getVehicle().getModel() + ": " +
-	                (lloguer.calculaQuantitat() * 30) + "�" + "\n";
+	                (lloguer.quantitat() * 30) + "�" + "\n";
 	    }
 	    
 
 	    resultat += "Import a pagar: " + preuTotal() + "�\n" +
 	        "Punts guanyats: " + totalBonificacions() + "\n";
 	    return resultat;
-	}
-	
-	public double quantitatPerLloguer(Lloguer lloguer) {
-		double quantitat = 0;		
-		switch (lloguer.getVehicle().getCategoria()) {
-		case Vehicle.BASIC:
-            quantitat += 3;
-            if (lloguer.getDies() > 3) {
-                quantitat += (lloguer.getDies() - 3) * 1.5;
-            }
-            break;
-		case Vehicle.GENERAL:
-            quantitat += 4;
-            if (lloguer.getDies() > 2) {
-                quantitat += (lloguer.getDies() - 2) * 2.5;
-            }
-            break;
-		case Vehicle.LUXE:
-            quantitat += lloguer.getDies() * 6;
-            break;
-		}
-		return quantitat;
 	}
 	
 	public int totalBonificacions() {
@@ -104,7 +82,7 @@ public class Client {
 	public double preuTotal() {
 		double total = 0;
 		for (Lloguer lloguer:lloguers) { //Calcula el total de cada cotxe i suma al total
-			double preu = lloguer.calculaQuantitat();
+			double preu = lloguer.quantitat();
 			total += preu * 30;
 		}
 		return total;
