@@ -51,32 +51,31 @@ public class Lloguer {
 	public int bonificacions() {
 		// Bonificacions per als vehicles de luxe
 		int bonificacions = 0;
-		if (vehicle.getCategoria() == vehicle.luxe && getDies()>1 ) {
+		if (vehicle.getCategoria() == vehicle.LUXE && getDies()>1 ) {
 			bonificacions++;
 		}
 		return bonificacions;
 	}
 	
 	public double calculaQuantitat() {
-		
-		double quantitat = 0;
-		
-		if (vehicle.getCategoria()==vehicle.basic) {
+		double quantitat = 0;		
+		if (vehicle.getCategoria()==Vehicle.BASIC) {
             quantitat += 3;
             if (getDies() > 3) {
                 quantitat += (getDies() - 3) * 1.5;   
             }
-    	} else if (vehicle.getCategoria()==vehicle.general) {
+    	} else if (vehicle.getCategoria()==Vehicle.GENERAL) {
             	quantitat += 4;
             	if (getDies() > 2) {
             		quantitat += (getDies() - 2) * 2.5;
     	}
-        } else if (vehicle.getCategoria()==vehicle.luxe) {
+        } else if (vehicle.getCategoria()==Vehicle.LUXE) {
             	quantitat += getDies() * 6;
         } 
 		return quantitat;
 		
 	}
+			
+}
 
 	
-}

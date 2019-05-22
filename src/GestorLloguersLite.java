@@ -6,9 +6,9 @@ public class GestorLloguersLite  {
 	public static void main(String[] args) throws Exception {
 		Client c1 = new Client("43583822H","Sergi","654231987");
 		
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.basic);
-		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.general);
-		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.BASIC);
+		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.GENERAL);
+		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
 		Date data1 = dateFormat.parse("2/11/1999");

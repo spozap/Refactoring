@@ -12,9 +12,9 @@ public class TestLloguers {
 	public void testClient() throws ParseException {
 		Client c1 = new Client("43583822H","Sergi","654231987");
 		
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.basic);
-		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.general);
-		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.BASIC);
+		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.GENERAL);
+		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
 		Date data1 = dateFormat.parse("2/11/1999");
@@ -61,7 +61,7 @@ public class TestLloguers {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
 		Date data1 = dateFormat.parse("2/11/1999");
 		
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.basic);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.BASIC);
 		
 		Lloguer lloguer1 = new Lloguer(15,data1);
 		lloguer1.llogaCotxe(vehicle1);		
@@ -88,8 +88,8 @@ public class TestLloguers {
 		Lloguer lloguer1 = new Lloguer(30,data1);
 		Lloguer lloguer2 = new Lloguer(23,data2);
 		
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.basic);
-		Vehicle vehicle2 = new Vehicle("Seat","Ibiza",Vehicle.general);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.BASIC);
+		Vehicle vehicle2 = new Vehicle("Seat","Ibiza",Vehicle.GENERAL);
 		
 		lloguer1.llogaCotxe(vehicle1);
 		lloguer2.llogaCotxe(vehicle2);
@@ -112,7 +112,7 @@ public class TestLloguers {
 		Date data1 = dateFormat.parse("2/11/1999");
 		
 		Lloguer lloguer1 = new Lloguer(1,data1);
-		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 		lloguer1.llogaCotxe(vehicle1);
 		c1.afegeix(lloguer1);
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
@@ -128,7 +128,7 @@ public class TestLloguers {
 		Date data1 = dateFormat.parse("2/11/1999");
 		
 		Lloguer lloguer1 = new Lloguer(1,data1);
-		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 		lloguer1.llogaCotxe(vehicle1);
 		c1.afegeix(lloguer1);
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
@@ -144,7 +144,7 @@ public class TestLloguers {
 		Date data1 = dateFormat.parse("2/11/1999");
 		
 		Lloguer lloguer1 = new Lloguer(1,data1);
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.general);
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.GENERAL);
 		lloguer1.llogaCotxe(vehicle1);
 		c1.afegeix(lloguer1);
 		
@@ -156,21 +156,27 @@ public class TestLloguers {
 		assertEquals(output,funcio);
 	}
 	
-	
 	public static void main(String[] args) throws ParseException {
 		Client c1 = new Client("43583822H","Sergi","789456231");
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
 		Date data1 = dateFormat.parse("2/11/1999");
+		Date data2 = dateFormat.parse("5/10/2017");
+		Date data3 = dateFormat.parse("7/9/2019");
 		
-		Lloguer lloguer1 = new Lloguer(1,data1);
-		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.luxe);
+		Lloguer lloguer1 = new Lloguer(10,data1);
+		Lloguer lloguer2 = new Lloguer(30,data2);
+		Lloguer lloguer3 = new Lloguer(18,data3);
+		///
+		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.GENERAL);
+		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.GENERAL);
+		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 		lloguer1.llogaCotxe(vehicle1);
+		lloguer2.llogaCotxe(vehicle2);
+		lloguer3.llogaCotxe(vehicle3);
 		c1.afegeix(lloguer1);
-		
+		c1.afegeix(lloguer2);
+		c1.afegeix(lloguer3);
 		System.out.println(c1.informe());
 	}
-	
-	
-	
 	
 }
