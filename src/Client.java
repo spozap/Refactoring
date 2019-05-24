@@ -56,7 +56,7 @@ public class Client {
 	    
 	    for (Lloguer lloguer:lloguers) {
 	    	double quantitat = 0;
-	    	bonificacions += lloguer.bonificacions();
+	    	bonificacions += bonificacionsDeLloguer(lloguer);
 	        resultat += "\t" +
 	                lloguer.getVehicle().getMarca() +
 	                " " +
@@ -66,16 +66,18 @@ public class Client {
 	    
 
 	    resultat += "Import a pagar: " + preuTotal() + "�\n" +
-	        "Punts guanyats: " + totalBonificacions() + "\n";
+	        "Punts guanyats: " + bonificacions + "\n";
 	    return resultat;
 	}
 	
-	public int totalBonificacions() {
+	
+	public int bonificacionsDeLloguer(Lloguer lloguer) {
 		int bonificacions = 0;
-		for (Lloguer lloguer:lloguers) {
-			bonificacions += lloguer.bonificacions();
-		}
-		return bonificacions;
+        if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
+                lloguer.getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
 	}
 	
 	//Preu de tots els lloguers d'un client
