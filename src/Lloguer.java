@@ -45,15 +45,6 @@ public class Lloguer {
 	}
 	
 	
-	public int bonificacions() {
-		// Bonificacions per als vehicles de luxe
-		int bonificacions = 0;
-		if (vehicle.getCategoria() == vehicle.LUXE && getDies()>1 ) {
-			bonificacions++;
-		}
-		return bonificacions;
-	}
-	
 	public double quantitat() { // Ja no cal rebre el paràmetre de lloguer perquè ja el sap
 		double quantitat = 0;		
 		switch (getVehicle().getCategoria()) {
@@ -75,6 +66,14 @@ public class Lloguer {
 		}
 		return quantitat;
 		
+	}
+	
+	public int bonificacions() {
+		int bonificacions = 0;
+        if (getVehicle().getCategoria() == Vehicle.LUXE &&getDies()>1 ) {
+            bonificacions ++;
+        }
+        return bonificacions;
 	}
 			
 }

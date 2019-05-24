@@ -56,7 +56,7 @@ public class Client {
 	    
 	    for (Lloguer lloguer:lloguers) {
 	    	double quantitat = 0;
-	    	bonificacions += bonificacionsDeLloguer(lloguer);
+	    	bonificacions += lloguer.bonificacions();
 	        resultat += "\t" +
 	                lloguer.getVehicle().getMarca() +
 	                " " +
@@ -70,15 +70,6 @@ public class Client {
 	    return resultat;
 	}
 	
-	
-	public int bonificacionsDeLloguer(Lloguer lloguer) {
-		int bonificacions = 0;
-        if (lloguer.getVehicle().getCategoria() == Vehicle.LUXE &&
-                lloguer.getDies()>1 ) {
-            bonificacions ++;
-        }
-        return bonificacions;
-	}
 	
 	//Preu de tots els lloguers d'un client
 	public double preuTotal() {
