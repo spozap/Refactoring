@@ -66,7 +66,7 @@ public class Client {
 	    
 
 	    resultat += "Import a pagar: " + importTotal() + "�\n" +
-	        "Punts guanyats: " + bonificacions + "\n";
+	        "Punts guanyats: " + bonificacionsTotals() + "\n";
 	    return resultat;
 	}
 	
@@ -79,6 +79,14 @@ public class Client {
 			total += preu * 30;
 		}
 		return total;
+	}
+	
+	public int bonificacionsTotals() {
+		int bonificacions = 0;
+		for (Lloguer lloguer:lloguers) {
+			bonificacions += lloguer.bonificacions();
+		}
+		return bonificacions;
 	}
 	
 	
