@@ -65,14 +65,14 @@ public class Client {
 	    }
 	    
 
-	    resultat += "Import a pagar: " + preuTotal() + "�\n" +
+	    resultat += "Import a pagar: " + importTotal() + "�\n" +
 	        "Punts guanyats: " + bonificacions + "\n";
 	    return resultat;
 	}
 	
 	
 	//Preu de tots els lloguers d'un client
-	public double preuTotal() {
+	public double importTotal() {
 		double total = 0;
 		for (Lloguer lloguer:lloguers) { //Calcula el total de cada cotxe i suma al total
 			double preu = lloguer.quantitat();
