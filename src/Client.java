@@ -50,24 +50,13 @@ public class Client {
 	
 	public String informe() {
 	    int bonificacions = 0;
-	    String resultat = "Informe de lloguers del client " +
+	    /*String resultat = "Informe de lloguers del client " +
 	        getNom() +
-	        " (" + getNif() + ")\n";
-	    
-	    for (Lloguer lloguer:lloguers) {
-	    	double quantitat = 0;
-	    	bonificacions += lloguer.bonificacions();
-	        resultat += "\t" +
-	                lloguer.getVehicle().getMarca() +
-	                " " +
-	                lloguer.getVehicle().getModel() + ": " +
-	                (lloguer.quantitat() * 30) + "�" + "\n";
-	    }
-	    
-
-	    resultat += "Import a pagar: " + importTotal() + "�\n" +
-	        "Punts guanyats: " + bonificacionsTotals() + "\n";
-	    return resultat;
+	        " (" + getNif() + ")\n";*/
+	    return composaCapsalera() +
+	    		composaDetall() +
+	    		composaPreu();
+	    		
 	}
 	
 	
@@ -87,6 +76,34 @@ public class Client {
 			bonificacions += lloguer.bonificacions();
 		}
 		return bonificacions;
+	}
+	
+	public String composaCapsalera() {
+	    String resultat = "Informe de lloguers del client " +
+		        getNom() +
+		        " (" + getNif() + ")\n";
+		return resultat;
+	}
+	public String composaDetall() {
+		int bonificacions = 0;
+		String resultat = "";
+	    for (Lloguer lloguer:lloguers) {
+	    	double quantitat = 0;
+	    	bonificacions += lloguer.bonificacions();
+	        resultat += "\t" +
+	                lloguer.getVehicle().getMarca() +
+	                " " +
+	                lloguer.getVehicle().getModel() + ": " +
+	                (lloguer.quantitat() * 30) + "�" + "\n";
+	    }
+		
+		return resultat;
+	}
+	public String composaPreu() {
+		String resultat;
+	    resultat = "Import a pagar: " + importTotal() + "�\n" +
+		        "Punts guanyats: " + bonificacionsTotals() + "\n";
+	    return resultat;
 	}
 	
 	
