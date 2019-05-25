@@ -46,15 +46,14 @@ public class Client {
 		return num;
 	}
 	
-	// Del mï¿½tode informe en general podem aprofitar tot el codi , encara que falta modificar algunes coses
-	// per a reaprofitar-ho al usar-ho en mï¿½todes.
+	// Del m€tode informe en general podem aprofitar tot el codi , encara que falta modificar algunes coses
+	// per a reaprofitar-ho al usar-ho en m€todes.
 	
 	public String informe() {
 	    int bonificacions = 0;
 	    return composaCapsalera() +
 	    		composaDetall() +
-	    		composaPreu();
-	    		
+	    		composaPreu(); 		
 	}
 	
 	
@@ -92,14 +91,14 @@ public class Client {
 	                lloguer.getVehicle().getMarca() +
 	                " " +
 	                lloguer.getVehicle().getModel() + ": " +
-	                (lloguer.quantitat() * EUROS_PER_UNITAT_COST) + "ï¿½" + "\n";
+	                (lloguer.quantitat() * EUROS_PER_UNITAT_COST) + "€" + "\n";
 	    }
 		
 		return resultat;
 	}
 	public String composaPreu() {
 		String resultat;
-	    resultat = "Import a pagar: " + importTotal() + "ï¿½\n" +
+	    resultat = "Import a pagar: " + importTotal() + "€\n" +
 		        "Punts guanyats: " + bonificacionsTotals() + "\n";
 	    return resultat;
 	}

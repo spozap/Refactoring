@@ -6,6 +6,11 @@ public class Lloguer {
 	private int dies;
 	private Date data;
 	private Vehicle vehicle;
+	private static final int DIES_INICIALS_MATEIX_PREU_BASIC = 3;
+	private static final int DIES_INICIALS_MATEIX_PREU_GENERAL = 2;
+	private static final int PREU_UNITAT_COST_BASIC = 3;
+	private static final int PREU_UNITAT_COST_GENERAL = 4;
+	private static final int PREU_UNITAT_COST_LUXE = 6;
 	Lloguer(int dies, Date data){
 		this.setData(data);
 		this.setDies(dies);
@@ -49,19 +54,19 @@ public class Lloguer {
 		double quantitat = 0;		
 		switch (getVehicle().getCategoria()) {
 		case Vehicle.BASIC:
-            quantitat += 3;
-            if (getDies() > 3) {
-                quantitat += (getDies() - 3) * 1.5;
+            quantitat += PREU_UNITAT_COST_BASIC;
+            if (getDies() > DIES_INICIALS_MATEIX_PREU_BASIC) {
+                quantitat += (getDies() - DIES_INICIALS_MATEIX_PREU_BASIC) * 1.5;
             }
             break;
 		case Vehicle.GENERAL:
-            quantitat += 4;
-            if (getDies() > 2) {
-                quantitat += (getDies() - 2) * 2.5;
+            quantitat += PREU_UNITAT_COST_GENERAL;
+            if (getDies() > DIES_INICIALS_MATEIX_PREU_GENERAL) {
+                quantitat += (getDies() - DIES_INICIALS_MATEIX_PREU_GENERAL) * 2.5;
             }
             break;
 		case Vehicle.LUXE:
-            quantitat += getDies() * 6;
+            quantitat += getDies() * PREU_UNITAT_COST_LUXE;
             break;
 		}
 		return quantitat;

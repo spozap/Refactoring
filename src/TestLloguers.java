@@ -33,10 +33,10 @@ public class TestLloguers {
 		c1.afegeix(lloguer2);
 		c1.afegeix(lloguer3);
 		String a = "Informe de lloguers del client Sergi (43583822H)\n" + 
-				"\tVerlingo Citroen: 1080.0ï¿½\n" + 
-				"\tDokker Dacia: 2220.0ï¿½\n" + 
-				"\tModel Y Tesla: 3240.0ï¿½\n" + 
-				"Import a pagar: 6540.0ï¿½\nPunts guanyats: 1\n";
+				"\tVerlingo Citroen: 1080.0€\n" + 
+				"\tDokker Dacia: 2220.0€\n" + 
+				"\tModel Y Tesla: 3240.0€\n" + 
+				"Import a pagar: 6540.0€\nPunts guanyats: 1\n";
 		String test = c1.informe();
 		assertEquals(a,test);
 	}
@@ -47,7 +47,7 @@ public class TestLloguers {
 		String as = c1.informe();
 		
 		String resultat = "Informe de lloguers del client Borja (4564545H)\n";
-		resultat+="Import a pagar: 0.0ï¿½\n"; 
+		resultat+="Import a pagar: 0.0€\n"; 
 		resultat +="Punts guanyats: 0\n";
 		assertEquals(as,resultat);
 		
@@ -70,8 +70,8 @@ public class TestLloguers {
 		String informe = c1.informe();
 		
 		String output="Informe de lloguers del client Sergi (43583822H)\n"+
-		"\tVerlingo Citroen: 630.0ï¿½\n"+
-		"Import a pagar: 630.0ï¿½\n"+
+		"\tVerlingo Citroen: 630.0€\n"+
+		"Import a pagar: 630.0€\n"+
 		"Punts guanyats: 0\n";
 		assertEquals(output,informe);
 		
@@ -97,9 +97,9 @@ public class TestLloguers {
 		c1.afegeix(lloguer2);
 		
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
-				"\tVerlingo Citroen: 1305.0ï¿½\n"+
-				"\tIbiza Seat: 1695.0ï¿½\n"+
-			"Import a pagar: 3000.0ï¿½\n"+
+				"\tVerlingo Citroen: 1305.0€\n"+
+				"\tIbiza Seat: 1695.0€\n"+
+			"Import a pagar: 3000.0€\n"+
 			"Punts guanyats: 0\n";
 		String funcio = c1.informe();
 		assertEquals(output,funcio);
@@ -115,10 +115,12 @@ public class TestLloguers {
 		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 		lloguer1.llogaCotxe(vehicle1);
 		c1.afegeix(lloguer1);
+		String informe = c1.informe();
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
-				"\tModel Y Tesla: 360.0ï¿½"+
-				"Import a pagar: 360.0ï¿½\n"+
+				"\tModel Y Tesla: 180.0€\n"+
+				"Import a pagar: 180.0€\n"+
 				"Punts guanyats: 0\n";
+		assertEquals(output,informe);
 	}
 	
 	@Test
@@ -131,10 +133,12 @@ public class TestLloguers {
 		Vehicle vehicle1 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
 		lloguer1.llogaCotxe(vehicle1);
 		c1.afegeix(lloguer1);
+		String funcio = c1.informe();
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
-				"\tModel Y Tesla: 360.0ï¿½"+
-				"Import a pagar: 360.0ï¿½\n"+
-				"Punts guanyats: 1\n";
+				"\tModel Y Tesla: 180.0€\n"+
+				"Import a pagar: 180.0€\n"+
+				"Punts guanyats: 0\n";
+		assertEquals(output,funcio);
 	}
 	
 	@Test
@@ -150,33 +154,11 @@ public class TestLloguers {
 		
 		String funcio = c1.informe();
 		String output = "Informe de lloguers del client Sergi (43583822H)\n"+
-				"\tVerlingo Citroen: 120.0ï¿½\n"+
-				"Import a pagar: 120.0ï¿½\n"+
+				"\tVerlingo Citroen: 120.0€\n"+
+				"Import a pagar: 120.0€\n"+
 				"Punts guanyats: 0\n";
 		assertEquals(output,funcio);
 	}
 	
-	public static void main(String[] args) throws ParseException {
-		Client c1 = new Client("43583822H","Sergi","789456231");
-		SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy");
-		Date data1 = dateFormat.parse("2/11/1999");
-		Date data2 = dateFormat.parse("5/10/2017");
-		Date data3 = dateFormat.parse("7/9/2019");
-		
-		Lloguer lloguer1 = new Lloguer(10,data1);
-		Lloguer lloguer2 = new Lloguer(30,data2);
-		Lloguer lloguer3 = new Lloguer(18,data3);
-		///
-		Vehicle vehicle1 = new Vehicle("Citroen","Verlingo", Vehicle.GENERAL);
-		Vehicle vehicle2 = new Vehicle("Dacia","Dokker", Vehicle.GENERAL);
-		Vehicle vehicle3 = new Vehicle("Tesla","Model Y",Vehicle.LUXE);
-		lloguer1.llogaCotxe(vehicle1);
-		lloguer2.llogaCotxe(vehicle2);
-		lloguer3.llogaCotxe(vehicle3);
-		c1.afegeix(lloguer1);
-		c1.afegeix(lloguer2);
-		c1.afegeix(lloguer3);
-		System.out.println(c1.informe());
-	}
 	
 }
