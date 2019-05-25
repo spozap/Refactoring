@@ -7,16 +7,7 @@ public class Vehicle {
 	public static final int BASIC = 0;
 	public static final int GENERAL = 1;
 	public static final int LUXE = 2;
-	
-	/*
-	public static  int basic = int.BASIC; // Declarem el cotxe de tipus b�sic
-	public static int general = int.GENERAL; // Declarem el cotxe de tipus general
-	public static int luxe = int.LUXE; // Declarem el cotxe de luxe
-	
-	enum int { // Definim que el tipus de vehicle sigui algun dels especificats
-		BASIC , GENERAL , LUXE;
-	}
-	*/
+
 	
 	Vehicle(String model,String marca,int categoria) {
 		this.model = model;
