@@ -50,12 +50,40 @@ public class Client {
 	// per a reaprofitar-ho al usar-ho en m€todes.
 	
 	public String informe() {
-	    int bonificacions = 0;
 	    return composaCapsalera() +
 	    		composaDetall() +
 	    		composaPreu(); 		
 	}
 	
+	
+	public String informeHTML() {
+		return composaCapsaleraHTML()+
+				composaDetallHTML()+
+				composaPreuHTML();
+	}
+	
+	public String composaCapsaleraHTML() {
+		
+		String resultat = "<h1> Informe de lloguers </h1>\n"+
+				"<p> Informe de lloguers del client <em> "+ getNom() +"</em> ( <strong>" + getNif() + "</strong> ) </p>\n";
+		return resultat;
+	}
+	
+	public String composaDetallHTML() {
+		String resultat = "<table>\n"+
+		"<tr><td><strong>Marca</strong></td><td><strong>Model</strong></td><td><strong>Import</strong></td></tr>\n";
+		for (Lloguer lloguer : lloguers) {
+			resultat+="\t<tr><td>"+lloguer.getVehicle().getMarca()+"</td><td>"+lloguer.getVehicle().getMarca()+"</td><td>"+(lloguer.quantitat() * EUROS_PER_UNITAT_COST)+"</td></tr>\n";
+		}
+		resultat += "</table>\n";
+		return resultat;
+	}
+	
+	public String composaPreuHTML() {
+		String resultat = "<p>Import a pagar: <em>" + importTotal() +"</em></p>\n";
+		resultat += "<p> Punts guanyats: <em>"+bonificacionsTotals()+"</em></p>\n";
+		return resultat;
+	}
 	
 	//Preu de tots els lloguers d'un client
 	public double importTotal() {
@@ -85,7 +113,6 @@ public class Client {
 		int bonificacions = 0;
 		String resultat = "";
 	    for (Lloguer lloguer:lloguers) {
-	    	double quantitat = 0;
 	    	bonificacions += lloguer.bonificacions();
 	        resultat += "\t" +
 	                lloguer.getVehicle().getMarca() +
