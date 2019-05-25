@@ -51,25 +51,25 @@ public class Lloguer {
 	
 	
 	public double quantitat() { // Ja no cal rebre el paràmetre de lloguer perquè ja el sap
-		double quantitat = 0;		
+		double PREU_UNITAT_COTXE = 0;		
 		switch (getVehicle().getCategoria()) {
 		case Vehicle.BASIC:
-            quantitat += PREU_UNITAT_COST_BASIC;
+            PREU_UNITAT_COTXE += PREU_UNITAT_COST_BASIC;
             if (getDies() > DIES_INICIALS_MATEIX_PREU_BASIC) {
-                quantitat += (getDies() - DIES_INICIALS_MATEIX_PREU_BASIC) * 1.5;
+                PREU_UNITAT_COTXE += (getDies() - DIES_INICIALS_MATEIX_PREU_BASIC) * 1.5;
             }
             break;
 		case Vehicle.GENERAL:
-            quantitat += PREU_UNITAT_COST_GENERAL;
+            PREU_UNITAT_COTXE += PREU_UNITAT_COST_GENERAL;
             if (getDies() > DIES_INICIALS_MATEIX_PREU_GENERAL) {
-                quantitat += (getDies() - DIES_INICIALS_MATEIX_PREU_GENERAL) * 2.5;
+                PREU_UNITAT_COTXE += (getDies() - DIES_INICIALS_MATEIX_PREU_GENERAL) * 2.5;
             }
             break;
 		case Vehicle.LUXE:
-            quantitat += getDies() * PREU_UNITAT_COST_LUXE;
+            PREU_UNITAT_COTXE += getDies() * PREU_UNITAT_COST_LUXE;
             break;
 		}
-		return quantitat;
+		return PREU_UNITAT_COTXE;
 		
 	}
 	
